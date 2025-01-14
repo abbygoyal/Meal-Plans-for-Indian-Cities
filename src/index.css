@@ -1,0 +1,152 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f5f5f5;
+}
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+.location-selector {
+  margin: 20px 0;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+select {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-width: 200px;
+  background: white;
+  cursor: pointer;
+}
+.react-calendar {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.calendar-meals {
+  font-size: 12px;
+  margin-top: 5px;
+  padding: 5px;
+  background: #f9f9f9;
+  border-radius: 4px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  text-align: left;
+}
+.meal-item {
+  display: flex;
+  align-items: flex-start;
+  margin: 2px 0;
+  padding: 2px;
+  white-space: normal;
+  overflow: hidden;
+  line-height: 1.5;
+  width: 100%;
+}
+.meal-icon {
+  margin-right: 4px;
+  flex-shrink: 0;
+  font-size: 12px;
+  margin-top: 2px;
+}
+.meal-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+.react-calendar__tile {
+  height: 160px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: flex-start;
+}
+.react-calendar__tile--now {
+  background: #e8f4f8;
+}
+.react-calendar__tile--active {
+  background: #3498db;
+  color: white;
+}
+.react-calendar__tile--active .calendar-meals {
+  background: rgba(255, 255, 255, 0.2);
+}
+.react-calendar__navigation {
+  background: #2c3e50;
+  color: white;
+  padding: 10px;
+}
+.react-calendar__navigation button {
+  color: white;
+  background: none;
+  border: none;
+  font-size: 16px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.react-calendar__month-view__weekdays {
+  background: #ecf0f1;
+  padding: 10px 0;
+  font-size: 12px;
+}
+.react-calendar__month-view__days__day--weekend {
+  color: #e74c3c;
+}
+@media (max-width: 768px) {
+  .react-calendar__tile {
+    height: 130px;
+  }
+  .calendar-meals {
+    font-size: 11px;
+  }
+  .meal-item {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .meal-icon {
+    margin-right: 3px;
+    margin-bottom: 0;
+    font-size: 11px;
+  }
+  .react-calendar__month-view__weekdays {
+    font-size: 11px;
+  }
+}
+@media (max-width: 480px) {
+  .react-calendar__tile {
+    height: 110px;
+  }
+  .calendar-meals {
+    font-size: 10px;
+  }
+  .meal-item {
+    display: none;
+  }
+  .meal-item:first-child {
+    display: flex;
+  }
+}
