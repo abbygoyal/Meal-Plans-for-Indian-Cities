@@ -17,19 +17,45 @@ export default function MealPlanner() {
       dinner: ["Roti Sabzi", "Chicken Curry", "Vegetable Pulao"],
     };
 
-    const days = Array.from({ length: 30 }, (_, i) => {
-      const week = Math.floor(i / 7);
-      const dayInWeek = i % 7;
-
-      return {
+    const allMeals = [];
+    for (let i = 0; i < 30; i++) {
+      allMeals.push({
         date: new Date(date.getFullYear(), date.getMonth(), i + 1),
-        breakfast: plan.breakfast[(week + dayInWeek) % plan.breakfast.length],
-        lunch: plan.lunch[(week + dayInWeek) % plan.lunch.length],
-        dinner: plan.dinner[(week + dayInWeek) % plan.dinner.length],
-      };
-    });
+        breakfast: null,
+        lunch: null,
+        dinner: null,
+      });
+    }
 
-    setMeals(days);
+    const getRandomMeal = (mealType, usedMeals) => {
+      const availableMeals = plan[mealType].filter(
+        (meal) => !usedMeals.includes(meal)
+      );
+      if (availableMeals.length === 0) {
+        return plan[mealType][
+          Math.floor(Math.random() * plan[mealType].length)
+        ];
+      }
+      return availableMeals[Math.floor(Math.random() * availableMeals.length)];
+    };
+
+    for (let i = 0; i < 30; i++) {
+      const usedBreakfasts = allMeals
+        .slice(Math.max(0, i - 6), i)
+        .map((m) => m.breakfast);
+      const usedLunches = allMeals
+        .slice(Math.max(0, i - 6), i)
+        .map((m) => m.lunch);
+      const usedDinners = allMeals
+        .slice(Math.max(0, i - 6), i)
+        .map((m) => m.dinner);
+
+      allMeals[i].breakfast = getRandomMeal("breakfast", usedBreakfasts);
+      allMeals[i].lunch = getRandomMeal("lunch", usedLunches);
+      allMeals[i].dinner = getRandomMeal("dinner", usedDinners);
+    }
+
+    setMeals(allMeals);
   };
 
   useEffect(() => {
